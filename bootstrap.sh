@@ -34,3 +34,10 @@ else
   cmake ..
   make
 fi
+
+# Test run
+# if [ -f "${DIR}/g2o.so" ]; then
+#   python3 ${DIR}/g2o.py
+# else
+#   echo "WARNING: Couldn't do a test run; no g2o.so found."
+# fi

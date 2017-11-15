@@ -39,8 +39,6 @@ LIST(APPEND G2O_LIBS
     g2o_types_sclam2d g2o_solver_pcg g2o_types_data g2o_types_sim3
 )
 
-#add_executable(${LIBRARY_NAME} ${SOURCES})
-
 target_link_libraries(
     ${LIBRARY_NAME}
     ${G2O_LIBS}

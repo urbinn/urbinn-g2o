@@ -11,4 +11,6 @@ RUN apt-get update && apt-get install -y \
 	libboost-python-dev \
 	libsuitesparse-dev \
 	&& rm -rf /var/lib/apt/lists/ \
-	&& /urbinn-g2o/bootstrap.sh
+	&& /urbinn-g2o/bootstrap.sh && ldconfig
+
+CMD python3 /urbinn-g2o/g2o.py
