@@ -3,7 +3,8 @@ FROM ubuntu:17.10
 WORKDIR /urbinn-g2o
 ADD . /urbinn-g2o
 
-RUN apt-get update && rm -rf /var/lib/apt/lists/ && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	build-essential \
 	cmake \
 	libeigen3-dev \
 	python3.6 \

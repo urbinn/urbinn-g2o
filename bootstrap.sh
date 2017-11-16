@@ -1,7 +1,9 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BUILD_ON_SERVER=false
+FORCE_BUILD=false
 
-# Build g2o
+# G2O directory
 BA="${DIR}/thirdparty/g2o"
 
 build_g2o() {
@@ -11,33 +13,38 @@ build_g2o() {
   make install
 }
 
-if [ ! -d "${BA}/build" ]; then
-  build_g2o
-elif [ "$1" = "--force" ]; then
+build_bindings() {
   rm -r build
-  build_g2o
-else 
-  echo "SKIPPING: Build artifact detected in g2o, run with --force to rebuild."
-fi
-
-# Build g2o bindings
-cd ${DIR}
-
-if [ -d "${DIR}/build" ]; then
-  rm -r build
-  mkdir build
-  cmake ...
-  make
-else
   mkdir build
   cd build
-  cmake ..
+  if [ $BUILD_ON_SERVER = "true" ]; then
+    echo $BUILD_ON_SERVER
+    cmake -DCSPARSE_INCLUDE_DIR:STRING="/opt/jupyterhub/anaconda/include" ..
+  else 
+    cmake ..
+  fi
+
   make
+}
+
+while test $# -gt 0
+do
+  case "$1" in
+    --server) BUILD_ON_SERVER=true
+        ;;
+    --*) echo "bad option $1"
+        ;;
+    *) echo "argument $1"
+        ;;
+  esac
+  shift
+done
+
+# Build g2o
+if [ ! -d "${BA}/build" ]; then
+  build_g2o
 fi
 
-# Test run
-# if [ -f "${DIR}/g2o.so" ]; then
-#   python3 ${DIR}/g2o.py
-# else
-#   echo "WARNING: Couldn't do a test run; no g2o.so found."
-# fi
+# Build python bindings
+cd ${DIR}
+build_bindings
