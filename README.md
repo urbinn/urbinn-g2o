@@ -15,11 +15,11 @@ and build g2o. *This step can take a while*.
 
 In order to test the implementation you can run the following command:
 
-```docker run g2o/urbinn```
+```docker run urbinn/g2o```
 
 You can attempt to run it locally by calling `bootstrap.sh` but the results may vary depending on your system.
 
 ---
 
-There is definetly room for improvement in this setup and we will continue to improve it.
+There is definitely room for improvement in this setup and we will continue to improve it.
 
