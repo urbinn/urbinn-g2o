@@ -21,5 +21,5 @@ You can attempt to run it locally by calling `bootstrap.sh` but the results may 
 
 ---
 
-There is definetly room for improvement in this setup and we will continue to improve it.
+There is definitely room for improvement in this setup and we will continue to improve it.
 
