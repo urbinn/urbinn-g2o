@@ -42,9 +42,15 @@ done
 
 # Build g2o
 if [ ! -d "${BA}/build" ]; then
-  build_g2o
+  #build_g2o
+  echo "SUPPOSED TO BUILD G2O LUL"
 fi
 
+# Install pybind nump_cv bindings
+#cd ${DIR}/thirdparty/pybind11_opencv_numpy
+#python3.6 setup.py build
+#python3.6 setup.py install
+
 # Build python bindings
-cd ${DIR}
-build_bindings
+#cd ${DIR}
+#build_bindings
