@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	libsuitesparse-dev \
 	python3-setuptools \
 	python3-pip \
+	libopencv-dev \
+	python-opencv \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& /urbinn-g2o/bootstrap.sh \
 	&& ldconfig \

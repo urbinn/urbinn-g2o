@@ -9,7 +9,7 @@ BA="${DIR}/thirdparty/g2o"
 build_g2o() {
   mkdir "${BA}/build" && cd "${BA}/build"
   cmake -B${BA}/build -H${BA} -DG2O_BUILD_EXAMPLES:BOOL=OFF
-  make
+  make -j4
   make install
 }
 
@@ -42,8 +42,7 @@ done
 
 # Build g2o
 if [ ! -d "${BA}/build" ]; then
-  #build_g2o
-  echo "SUPPOSED TO BUILD G2O LUL"
+  build_g2o
 fi
 
 # Install pybind nump_cv bindings
@@ -52,5 +51,5 @@ fi
 #python3.6 setup.py install
 
 # Build python bindings
-#cd ${DIR}
+cd ${DIR}
 #build_bindings
