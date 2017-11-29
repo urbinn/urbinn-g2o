@@ -10,31 +10,50 @@ in order to set this up you'll have to run the following commands:
 
 ### Through Docker
 
-```./run-docker.sh```
+```./scripts/run-docker.sh <directory/to/local/project/folder>```
 
 This will setup the required docker container based on Ubuntu 17.10, install the required packages
 and build g2o. *This step can take a while*.
-
-In order to test the implementation you can run the following command:
-
-```docker run urbinn/g2o```
 
 ### Locally
 
 You can attempt to run it locally by calling `bootstrap.sh` but the results may vary depending on your system.
 
 ```
-./bootstrap.sh
+./scripts/bootstrap.sh
 
 Available arguments
 --server - sets the csparse include directory to `/opt/jupyterhub/anaconda/include`
 ```
 
----
+### Testing
 
-### Improvements
+Testing is as simple as invoking:
 
-- [ ] **Figure out a better Docker development workflow** <br />Instead of rebuilding the container being able to push to a running container for example. Not sure how Docker development workflows are.
+```
+python3 setup.py test
+```
 
-- [ ] **Filter out build directories when trying to setup a locally build project in Docker.**
+### Installing
+
+For checking if the package would work without globally installing it:
+
+```
+python3 setup.py develop
+```
+
+For globally installing the package:
+
+```
+python3 setup.py install
+```
+
+## Usage
+
+There is currently no documentation available. For more information on how to use certain bindings of this project
+refer to the `tests` directory.
+
+
+
+
 

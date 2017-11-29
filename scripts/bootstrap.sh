@@ -1,5 +1,5 @@
 #!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="/urbinn-g2o"
 BUILD_ON_SERVER=false
 FORCE_BUILD=false
 
