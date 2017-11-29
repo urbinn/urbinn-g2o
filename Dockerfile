@@ -17,6 +17,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& /urbinn-g2o/scripts/bootstrap.sh \
 	&& ldconfig \
 	&& pip3 install \
-		pybind11 
-		numpy
-		pytest
+		pybind11 \
+		numpy \
+		pytest \
