@@ -5,10 +5,12 @@ SET(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 SET(LIBRARY_NAME "urbg2o")
-SET(SOURCES "src/ndarray_converter.cpp" "src/urbg2o.cpp")
+SET(SOURCES "src/urbg2o.cpp" "src/bind.cpp")
 
 add_subdirectory(thirdparty/pybind11)
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
+
+OPTION(URBG2O_INSTALL "Install urbg2o?")
 
 IF(APPLE)
 	SET(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
@@ -32,16 +34,17 @@ INCLUDE_DIRECTORIES(
 	${EIGEN3_INCLUDE_DIR}
 	${OpenCV_INCLUDE_DIR}
 	${PYTHON_INCLUDE_DIRS}
-	)
+)
+
+install(DIRECTORY ${PYBIND11_INCLUDE_DIR}/pybind11 DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 LIST(APPEND G2O_LIBS
-	cxsparse
-	cholmod
-	g2o_cli g2o_solver_slam2d_linear g2o_types_icp g2o_types_slam2d
-	g2o_core g2o_solver_csparse g2o_solver_structure_only g2o_types_sba
-	g2o_types_slam3d g2o_csparse_extension g2o_solver_dense g2o_stuff 
-	g2o_types_sclam2d g2o_solver_pcg g2o_types_data g2o_types_sim3
-	)
+	${G2O_CORE_LIBRARY} ${G2O_STUFF_LIBRARY} ${G2O_SOLVER_CHOLMOD} ${G2O_SOLVER_CSPARSE}
+	${G2O_SOLVER_CSPARSE_EXTENSION} ${G2O_SOLVER_DENSE} ${G2O_TYPES_SBA}
+	${G2O_CLI_LIBRARY} ${G2O_SOLVER_SLAM2D_LINEAR} ${G2O_TYPES_ICP} ${G2O_TYPES_SLAM2D}
+	${G2O_SOLVER_STRUCTURE_ONLY} ${G2O_TYPES_SLAM3D} ${G2O_TYPES_SCLAM2D} ${G2O_SOLVER_PCG} 
+	${G2O_TYPES_DATA} ${G2O_TYPES_SIM3}
+)
 
 target_link_libraries(${LIBRARY_NAME}
 	${G2O_LIBS}
