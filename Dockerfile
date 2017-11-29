@@ -7,10 +7,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	build-essential \
 	cmake \
 	libeigen3-dev \
-	python3.6 \
-	libboost-python-dev \
+	python3.6-dev \
 	libsuitesparse-dev \
+	python3-setuptools \
+	python3-pip \
+	libopencv-dev \
+	python-opencv \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& /urbinn-g2o/bootstrap.sh && ldconfig
-
-CMD python3 /urbinn-g2o/g2o.py
+	&& /urbinn-g2o/bootstrap.sh \
+	&& ldconfig \
+	&& pip3 install pybind11
+#CMD python3 /urbinn-g2o/g2o.py
