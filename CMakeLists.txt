@@ -7,7 +7,7 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 ADD_SUBDIRECTORY(libs/pybind11)
 
 SET(LIBRARY_NAME "urbg2o")
-SET(SOURCES "src/urbg2o.cpp" "src/bindings.cpp")
+SET(SOURCES "src/urbg2o.cpp" "src/bindings.cpp" "src/LocalBundleAdjustment.cpp")
 
 # Search path for cmake module definitions
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
